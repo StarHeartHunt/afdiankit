@@ -1,0 +1,34 @@
+{% from "header.jinja" import header %}
+
+"""{{ header() }}"""
+
+{% from "client/_request.py.jinja" import build_request, build_request_params %}
+
+from typing import TYPE_CHECKING, Dict, Literal, Optional, overload
+
+if TYPE_CHECKING:
+    from afdiankit import AfdianCore
+    from afdiankit.response import Response
+
+class {{ pascal_case(tag) }}Client:
+    def __init__(self, afdian: "AfdianCore"):
+        self._afdian = afdian
+
+    {% for endpoint in endpoints %}
+    def {{ snake_case(endpoint.name) }}(
+        self,
+    ):
+        {{ build_request(endpoint) | indent(8) }}
+        return self._afdian.request(
+            {{ build_request_params(endpoint) | indent(12) }}
+        )
+
+    async def async_{{ snake_case(endpoint.name) }}(
+        self,
+    ):
+        {{ build_request(endpoint) | indent(8) }}
+        return await self._afdian.arequest(
+            {{ build_request_params(endpoint) | indent(12) }}
+        )
+
+    {% endfor %}

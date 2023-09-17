@@ -1,0 +1,12 @@
+{% macro build_path(endpoint) %}
+url = "{{ endpoint.url }}"
+{% endmacro %}
+
+{% macro build_request_params(endpoint) %}
+"{{ endpoint.method | upper }}",
+url,
+{% endmacro %}
+
+{% macro build_request(endpoint) %}
+{{ build_path(endpoint) }}
+{% endmacro %}
