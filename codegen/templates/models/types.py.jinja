@@ -23,6 +23,8 @@ class {{ pascal_case(snake_case(endpoint.name)) }}RequestBody(TypedDict):
 
 __all__ = [
   {% for endpoint in data %}
-  "{{ endpoint.name }}RequestBody",
+  {% if endpoint.method == 'post' %}
+  "{{ pascal_case(snake_case(endpoint.name)) }}RequestBody",
+  {% endif %}
   {% endfor %}
 ]
