@@ -45,7 +45,7 @@ extra_standard_library = ["typing_extensions"]
 
 [tool.ruff]
 select = ["E", "W", "F", "UP", "C", "T", "PYI", "PT", "Q"]
-ignore = ["E402", "C901", "UP037"]
+ignore = ["E402", "C901", "UP037", "F403"]
 
 line-length = 88
 target-version = "py38"
