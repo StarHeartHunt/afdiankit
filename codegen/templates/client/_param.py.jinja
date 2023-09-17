@@ -1,0 +1,32 @@
+{% macro query_params(endpoint) %}
+{%- if endpoint.params %}
+{% for param, value in endpoint.params.items() %}
+{{ param }}:{{ endpoint.get_type(value) }},
+{% endfor %}
+{%- endif %}
+{% endmacro %}
+
+{% macro endpoint_raw_params(endpoint) %}
+{{ query_params(endpoint) }}
+*,
+headers: Optional[Dict[str, str]] = None,
+{% endmacro %}
+
+{% macro endpoint_model_params(endpoint, model) %}
+{{ query_params(endpoint) }}
+*,
+headers: Optional[Dict[str, str]] = None,
+{%- if endpoint.method == 'post' and endpoint.data %}
+data: Literal[UNSET] = UNSET,
+{%- endif %}
+{% endmacro %}
+
+{% macro endpoint_params(endpoint, model) %}
+{{ query_params(endpoint) }}
+*,
+headers: Optional[Dict[str, str]] = None,
+{%- if endpoint.method == 'post' and endpoint.data %}
+data: Literal[UNSET] = UNSET,
+**kwargs
+{%- endif %}
+{% endmacro %}

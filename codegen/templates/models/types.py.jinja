@@ -1,0 +1,28 @@
+{% from "header.jinja" import header %}
+
+"""{{ header() }}"""
+
+from __future__ import annotations
+
+from typing import TypedDict
+
+{# model #}
+{% for endpoint in data %}
+{% if endpoint.method == 'post' %}
+
+class {{ pascal_case(snake_case(endpoint.name)) }}RequestBody(TypedDict):
+  {% for key, value in endpoint.body.items() %}
+  {{ key }}:{{ endpoint.get_type(value) }}
+  {% endfor %}
+  {% if not endpoint.body %}
+  ...
+  {% endif %}
+
+{% endif %}
+{% endfor %}
+
+__all__ = [
+  {% for endpoint in data %}
+  "{{ endpoint.name }}RequestBody",
+  {% endfor %}
+]

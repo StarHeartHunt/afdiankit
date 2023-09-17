@@ -2,11 +2,41 @@
 url = "{{ endpoint.url }}"
 {% endmacro %}
 
+{% macro build_query(params) %}
+{% if params %}
+params = {
+    {% for key in params.keys() %}
+    "{{ key }}": {{ key }},
+    {% endfor %}
+}
+{% endif %}
+{% endmacro %}
+
+{% macro build_body(request_body, endpoint_name) %}
+{% set name = 'json' %}
+if not kwargs:
+    kwargs = UNSET
+
+{{ name }} = kwargs if data is UNSET else data
+{{ name }} = TypeAdapter({{ pascal_case(snake_case(endpoint_name)) }}RequestBody).validate_python({{ name }})
+{{ name }} = {{ name }}.model_dump(by_alias=True) if isinstance({{ name }}, BaseModel) else {{ name }}
+{% endmacro %}
+
 {% macro build_request_params(endpoint) %}
 "{{ endpoint.method | upper }}",
 url,
+{% if endpoint.params %}
+params=exclude_unset(params),
+{% endif %}
+{% if endpoint.method == 'post' and endpoint.data %}
+json=exclude_unset(json),
+{% endif %}
 {% endmacro %}
 
 {% macro build_request(endpoint) %}
 {{ build_path(endpoint) }}
+{{ build_query(endpoint.params) }}
+{% if endpoint.body %}
+{{ build_body(endpoint.body, endpoint.name) }}
+{% endif %}
 {% endmacro %}

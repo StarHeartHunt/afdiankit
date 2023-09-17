@@ -2,9 +2,21 @@
 
 """{{ header() }}"""
 
+{% from "client/_param.py.jinja" import endpoint_params, endpoint_raw_params, endpoint_model_params %}
 {% from "client/_request.py.jinja" import build_request, build_request_params %}
 
+{% for endpoint in endpoints %}
+{% if endpoint.method == 'post' %}
+from afdiankit.utils import UNSET, Missing
+from .types import {{ pascal_case(snake_case(endpoint.name)) }}RequestBody
+{% endif %}
+{% endfor %}
+
 from typing import TYPE_CHECKING, Dict, Literal, Optional, overload
+
+from pydantic import BaseModel, TypeAdapter
+
+from afdiankit.utils import exclude_unset
 
 if TYPE_CHECKING:
     from afdiankit import AfdianCore
@@ -17,6 +29,7 @@ class {{ pascal_case(tag) }}Client:
     {% for endpoint in endpoints %}
     def {{ snake_case(endpoint.name) }}(
         self,
+        {{ endpoint_params(endpoint) | indent(8) }}
     ):
         {{ build_request(endpoint) | indent(8) }}
         return self._afdian.request(
@@ -25,6 +38,7 @@ class {{ pascal_case(tag) }}Client:
 
     async def async_{{ snake_case(endpoint.name) }}(
         self,
+        {{ endpoint_params(endpoint) | indent(8) }}
     ):
         {{ build_request(endpoint) | indent(8) }}
         return await self._afdian.arequest(
