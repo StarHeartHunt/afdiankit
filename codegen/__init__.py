@@ -33,7 +33,7 @@ def load_config() -> Config:
     return Config.model_validate(config_dict)
 
 
-def build_client(data: SchemaData, client_output: str):
+def build_api(data: SchemaData, client_output: str):
     # build endpoints
     logger.info("Building endpoints...")
 
@@ -50,6 +50,13 @@ def build_client(data: SchemaData, client_output: str):
         logger.info(f"Successfully built endpoints for tag {tag}!")
     logger.info("Successfully built endpoints!")
 
+    # build types
+    logger.info("Building types...")
+    types_template = env.get_template("models/types.py.jinja")
+    types_path = client_path / "types.py"
+    types_path.write_text(types_template.render(data=data))
+    logger.info("Successfully built types!")
+
     # build namespace
     logger.info("Building namespace...")
     namespace_template = env.get_template("namespace/namespace.py.jinja")
@@ -60,6 +67,10 @@ def build_client(data: SchemaData, client_output: str):
     logger.info("Successfully built namespace!")
 
 
+def build_types(data: SchemaData, client_output: str):
+    ...
+
+
 def build():
     config = load_config()
     logger.info(f"Loaded config: {config!r}")
@@ -68,4 +79,4 @@ def build():
     raw_schema_path = Path(__file__).parent / "data" / "data.json"
     data = SchemaData.model_validate_json(raw_schema_path.read_text("utf-8"))
 
-    build_client(data, config.client_output)
+    build_api(data, config.client_output)

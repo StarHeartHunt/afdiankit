@@ -13,6 +13,17 @@ class Endpoint(BaseModel):
     def get_endpoint_tag(self) -> str:
         return self.url.split("/")[2]
 
+    @property
+    def params(self):
+        return self.data if self.method == "get" else None
+
+    @property
+    def body(self):
+        return self.data if self.method == "post" else None
+
+    def get_type(self, value: Any):
+        return type(value).__name__
+
 
 class SchemaData(RootModel):
     root: List[Endpoint]
