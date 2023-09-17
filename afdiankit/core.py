@@ -154,7 +154,6 @@ class AfdianCore(Generic[A]):
             },
             "timeout": self.config.timeout,
             "follow_redirects": self.config.follow_redirects,
-            "cookies": "",
         }
 
     # create sync client
@@ -218,8 +217,6 @@ class AfdianCore(Generic[A]):
                 )
             except httpx.TimeoutException as e:
                 raise RequestTimeout(e.request) from e
-            except Exception as e:
-                raise RequestError(repr(e)) from e
 
     # async request
     async def _arequest(
