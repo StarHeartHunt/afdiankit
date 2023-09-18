@@ -6,10 +6,10 @@ from afdiankit.utils import UNSET, exclude_unset
 
 from .utils import sign as sign
 from .types import (
-    Ping,
-    QueryOrder,
-    QuerySponsor,
+    PongResponse,
+    QueryOrderResponse,
     PostPingRequestBody,
+    QuerySponsorResponse,
     PostQueryOrderRequestBody,
     PostQuerySponsorRequestBody,
 )
@@ -42,7 +42,7 @@ class OpenClient:
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=Ping,
+            response_model=PongResponse,
         )
 
     def post_query_order(
@@ -66,7 +66,7 @@ class OpenClient:
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=QueryOrder,
+            response_model=QueryOrderResponse,
         )
 
     def post_query_sponsor(
@@ -90,5 +90,5 @@ class OpenClient:
             url,
             json=exclude_unset(json),
             headers=exclude_unset(headers),
-            response_model=QuerySponsor,
+            response_model=QuerySponsorResponse,
         )
