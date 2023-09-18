@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING, Dict, Literal, Optional
 
 from pydantic import BaseModel, TypeAdapter
+
 from afdiankit.utils import UNSET, exclude_unset
 
 from .utils import sign as sign
