@@ -12,6 +12,7 @@ from typing import (
 )
 
 from .core import AfdianCore
+from .open import OpenClient
 from .response import Response
 from .rest import RestNamespace
 from .auth import BaseAuthStrategy
@@ -124,3 +125,8 @@ class Afdian(AfdianCore[A]):
     @cached_property
     def rest(self) -> RestNamespace:
         return RestNamespace(self)
+
+    # open api
+    @cached_property
+    def open(self) -> OpenClient:
+        return OpenClient(self)
