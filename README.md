@@ -54,14 +54,41 @@ pdm add afdiankit
 document.cookie.match(new RegExp("(^| )auth_token=([^;]+)"))[2];
 ```
 
-新建 Python 脚本，可直接复制以下模板，替换 auth_token 即可。
+调用 `afdiankit` 示例：
 
 ```python
 from afdiankit import Afdian, TokenAuthStrategy
 
 afdian = Afdian("<auth_token>")
 # 或者显式调用 TokenAuthStrategy
-github = GitHub(TokenAuthStrategy("<auth_token>"))
+github = Afdian(TokenAuthStrategy("<auth_token>"))
 ```
 
 ### 使用开放平台 API
+
+在[开发者后台](https://afdian.net/dashboard/dev)生成 webhook 的 token，复制 `user_id`。
+
+调用 `afdiankit` 示例：
+
+```python
+from afdiankit import Afdian, TokenAuthStrategy
+
+afdian = Afdian()
+user_id = "<user_id>"
+token = "<token>"
+
+afdian.open.post_ping(
+    token=token,
+    user_id=user_id,
+    params={"a": "1"},
+    ts=int(time.time())
+).json()
+```
+
+## 许可证
+
+项目源代码使用 MIT 许可证授权，见[LICENSE](https://github.com/StarHeartHunt/afdiankit/blob/main/LICENSE)。
+
+## 鸣谢
+
+- [yanyongyu/githubkit](https://github.com/yanyongyu/githubkit)
