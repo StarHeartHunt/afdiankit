@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "afdiankit"
-version = "0.1.1"
+version = "0.2.0"
 description = "Afdian SDK for Python"
 authors = ["StarHeartHunt <starheart233@gmail.com>"]
 license = "MIT"
