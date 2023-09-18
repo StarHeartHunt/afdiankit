@@ -1,0 +1,10 @@
+{
+  "name": "afdiankit",
+  "private": true,
+  "scripts": {
+    "pyright": "pyright"
+  },
+  "devDependencies": {
+    "pyright": "^1.1.327"
+  }
+}
