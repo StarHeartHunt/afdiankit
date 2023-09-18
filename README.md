@@ -16,8 +16,8 @@
   <a href="https://github.com/astral-sh/ruff">
     <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json" alt="ruff">
   </a>
-  <a href="https://results.pre-commit.ci/latest/github/StarHeartHunt/afdiankit/master">
-    <img src="https://results.pre-commit.ci/badge/github/StarHeartHunt/afdiankit/master.svg" alt="pre-commit" />
+  <a href="https://results.pre-commit.ci/latest/github/StarHeartHunt/afdiankit/main">
+    <img src="https://results.pre-commit.ci/badge/github/StarHeartHunt/afdiankit/main.svg" alt="pre-commit" />
   </a>
 </p>
 
@@ -87,7 +87,7 @@ afdian.open.post_ping(
 
 ## 许可证
 
-项目源代码使用 MIT 许可证授权，见[LICENSE](https://github.com/StarHeartHunt/afdiankit/blob/main/LICENSE)。
+项目源代码使用 MIT 许可证授权，见 [LICENSE](https://github.com/StarHeartHunt/afdiankit/blob/main/LICENSE)。
 
 ## 鸣谢
 
