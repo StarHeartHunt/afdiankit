@@ -158,8 +158,7 @@ class GetOrderCancelRequestBody(TypedDict):
     out_trade_no: str
 
 
-class GetMyApplyWithdrawRequestBody(TypedDict):
-    ...
+class GetMyApplyWithdrawRequestBody(TypedDict): ...
 
 
 class PostMyEditBasicRequestBody(TypedDict):
@@ -291,8 +290,7 @@ class PostAccountBindRequestBody(TypedDict):
     code: str
 
 
-class PostMyCreatorSharePageRequestBody(TypedDict):
-    ...
+class PostMyCreatorSharePageRequestBody(TypedDict): ...
 
 
 class PostOauthMpRedirectUriRequestBody(TypedDict):
@@ -514,8 +512,7 @@ class PostMySendMsgBatchRequestBody(TypedDict):
     content: str
 
 
-class PostCreatorCreateOpenTokenRequestBody(TypedDict):
-    ...
+class PostCreatorCreateOpenTokenRequestBody(TypedDict): ...
 
 
 class PostCreatorUpdateOpenWebhookRequestBody(TypedDict):
@@ -697,8 +694,7 @@ class PostAccountSubmitCancellationRequestBody(TypedDict):
     content: str
 
 
-class PostAccountCancelCancellationRequestBody(TypedDict):
-    ...
+class PostAccountCancelCancellationRequestBody(TypedDict): ...
 
 
 class PostDeleteSponsorRelationRequestBody(TypedDict):

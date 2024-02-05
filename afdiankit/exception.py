@@ -6,8 +6,7 @@ if TYPE_CHECKING:
     from .response import Response
 
 
-class AfdianException(Exception):
-    ...
+class AfdianException(Exception): ...
 
 
 class AuthCredentialError(AfdianException):
