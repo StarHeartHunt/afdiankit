@@ -43,8 +43,7 @@ class AfdianCore(Generic[A]):
         auth: str,
         *,
         config: Config,
-    ):
-        ...
+    ): ...
 
     # other auth strategies with config
     @overload
@@ -53,8 +52,7 @@ class AfdianCore(Generic[A]):
         auth: A,
         *,
         config: Config,
-    ):
-        ...
+    ): ...
 
     # token auth without config
     @overload
@@ -67,8 +65,7 @@ class AfdianCore(Generic[A]):
         user_agent: Optional[str] = None,
         follow_redirects: bool = True,
         timeout: Optional[Union[float, httpx.Timeout]] = None,
-    ):
-        ...
+    ): ...
 
     # other auth strategies without config
     @overload
@@ -81,8 +78,7 @@ class AfdianCore(Generic[A]):
         user_agent: Optional[str] = None,
         follow_redirects: bool = True,
         timeout: Optional[Union[float, httpx.Timeout]] = None,
-    ):
-        ...
+    ): ...
 
     def __init__(
         self,
