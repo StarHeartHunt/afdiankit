@@ -30,8 +30,7 @@ class OpenAPIRequestBody(BaseModel):
         )
 
 
-class PostPingRequestBody(OpenAPIRequestBody):
-    ...
+class PostPingRequestBody(OpenAPIRequestBody): ...
 
 
 class PostQueryOrderRequestParams(TypedDict):
