@@ -46,8 +46,7 @@ class Afdian(AfdianCore[A]):
             auth: None = None,
             *,
             config: Config,
-        ):
-            ...
+        ): ...
 
         # token auth with config
         @overload
@@ -56,8 +55,7 @@ class Afdian(AfdianCore[A]):
             auth: str,
             *,
             config: Config,
-        ):
-            ...
+        ): ...
 
         # other auth strategies with config
         @overload
@@ -66,8 +64,7 @@ class Afdian(AfdianCore[A]):
             auth: A,
             *,
             config: Config,
-        ):
-            ...
+        ): ...
 
         # none auth without config
         @overload
@@ -81,8 +78,7 @@ class Afdian(AfdianCore[A]):
             user_agent: Optional[str] = None,
             follow_redirects: bool = True,
             timeout: Optional[Union[float, httpx.Timeout]] = None,
-        ):
-            ...
+        ): ...
 
         # token auth without config
         @overload
@@ -96,8 +92,7 @@ class Afdian(AfdianCore[A]):
             user_agent: Optional[str] = None,
             follow_redirects: bool = True,
             timeout: Optional[Union[float, httpx.Timeout]] = None,
-        ):
-            ...
+        ): ...
 
         # other auth strategies without config
         @overload
@@ -111,11 +106,9 @@ class Afdian(AfdianCore[A]):
             user_agent: Optional[str] = None,
             follow_redirects: bool = True,
             timeout: Optional[Union[float, httpx.Timeout]] = None,
-        ):
-            ...
+        ): ...
 
-        def __init__(self, *args, **kwargs):
-            ...
+        def __init__(self, *args, **kwargs): ...
 
     # copy afdian instance with other auth
     def with_auth(self, auth: A_o) -> "Afdian[A_o]":

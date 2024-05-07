@@ -67,8 +67,7 @@ def build_api(data: SchemaData, client_output: str):
     logger.info("Successfully built namespace!")
 
 
-def build_types(data: SchemaData, client_output: str):
-    ...
+def build_types(data: SchemaData, client_output: str): ...
 
 
 def build():
