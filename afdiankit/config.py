@@ -34,7 +34,7 @@ def build_user_agent(user_agent: Optional[str] = None) -> str:
 
 
 def build_timeout(
-    timeout: Optional[Union[float, httpx.Timeout]] = None
+    timeout: Optional[Union[float, httpx.Timeout]] = None,
 ) -> httpx.Timeout:
     return timeout if isinstance(timeout, httpx.Timeout) else httpx.Timeout(timeout)
 
